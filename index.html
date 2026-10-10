@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENGine | Private Vietnamese tutoring with Angela Hoang</title>
+<meta name="description" content="Private Vietnamese lessons with Angela Hoang. Beginner, intermediate and advanced. Ages 5 to 60. Online and in person in Sydney.">
+
+<!--
+  ============================================================
+  THINGS TO FILL IN BEFORE THIS PAGE GOES LIVE
+  Search this file for  [ADD  to find each one.
+
+  1. Your email address      (near the bottom, in the script: TUTOR_EMAIL)
+  2. Your photo              (in the hero section)
+  3. About me: your story    (in the About me section)
+  4. What each level covers  (three cards in Subjects and levels)
+  ============================================================
+-->
+
+<style>
+  :root {
+    color-scheme: light;
+
+    /* Colours, taken from the reference image.
+       The blue is a darker shade of the reference blue so text passes contrast checks. */
+    --blue: #226B86;
+    --blue-dark: #1A556B;
+    --blue-soft: #C9E2EA;
+    --tint: #F3F5FD;
+    --white: #FFFFFF;
+    --ink: #262D3A;
+    --text: #4A5261;
+    --line: #DDE2EC;
+    --field-line: #717B8C;
+    --error: #B3261E;
+
+    /* Level colours, from the three highlighted words in the reference image. */
+    --rose-bg: #FCE8ED;   --rose-text: #9D2F4A;
+    --amber-bg: #FFF1D6;  --amber-text: #7A4A00;
+    --sky-bg: #E3F1FB;    --sky-text: #1D5F8A;
+
+    --todo-bg: #FFF6DB;
+    --todo-line: #B07A00;
+    --todo-text: #5C4100;
+
+    --font-display: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --wrap: 1120px;
+    --gutter: 24px;
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--blue);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: clamp(2.4rem, 5.4vw, 3.75rem); font-weight: 700; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); font-weight: 700; }
+  h3 { font-size: 1.35rem; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--blue); }
+
+  :focus-visible {
+    outline: 3px solid var(--blue-dark);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: calc(var(--wrap) + var(--gutter) * 2);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .skip {
+    position: absolute;
+    left: 16px;
+    top: -80px;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--white);
+    padding: 12px 18px;
+    border-radius: var(--radius);
+    font-weight: 600;
+  }
+  .skip:focus { top: 12px; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------- Buttons ---------- */
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 30px;
+    border: 2px solid var(--blue);
+    border-radius: var(--radius);
+    background: var(--blue);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .button:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+
+  .button-small { min-height: 46px; padding: 0 22px; font-size: 1rem; }
+
+  .button-light {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--blue-dark);
+  }
+  .button-light:hover { background: var(--tint); border-color: var(--tint); }
+
+  /* ---------- Placeholders you still need to fill in ---------- */
+
+  .todo {
+    display: block;
+    background: var(--todo-bg);
+    border: 2px dashed var(--todo-line);
+    border-radius: 8px;
+    color: var(--todo-text);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    padding: 10px 14px;
+  }
+
+  /* ---------- Top bar ---------- */
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 80px;
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--blue);
+    text-decoration: none;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    min-height: 46px;
+  }
+
+  .menu-button {
+    display: none;
+    align-items: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border: 2px solid var(--blue);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--blue);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav ul {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    list-style: none;
+    margin: 0 14px 0 0;
+    padding: 0;
+  }
+
+  .nav ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 0 12px;
+    color: var(--ink);
+    font-size: 1.02rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  .nav ul a:hover { color: var(--blue); background: var(--tint); }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    background: var(--tint);
+    clip-path: polygon(0 26px, 22% 0, 100% 0, 100% calc(100% - 26px), 62% 100%, 0 100%);
+    margin-top: 20px;
+    padding: 108px 0 116px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 64px;
+  }
+
+  .hero-brand {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .hero-text {
+    max-width: 34em;
+    margin: 26px 0 34px;
+    font-size: 1.2rem;
+  }
+
+  .photo {
+    position: relative;
+    max-width: 520px;
+    margin-left: auto;
+  }
+
+  .photo::before {
+    content: "";
+    position: absolute;
+    inset: -6% 10% -11% -9%;
+    background: var(--blue-soft);
+    border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  }
+
+  .photo img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 10 / 7;
+    object-fit: cover;
+    border-radius: 72px;
+  }
+
+  .photo-name {
+    position: absolute;
+    left: -18px;
+    top: 44%;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(34, 107, 134, 0.18);
+    padding: 9px 14px;
+    line-height: 1.25;
+  }
+  .photo-name strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .photo-name span { font-size: 0.9rem; color: var(--text); }
+
+  .photo .todo {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- Sections ---------- */
+
+  .section { padding: 104px 0; }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .prose { max-width: 36em; }
+  .prose .todo { margin: 0 0 1.1em; }
+
+  .section-intro {
+    max-width: 34em;
+    margin: 16px 0 0;
+  }
+
+  /* ---------- Subjects and levels ---------- */
+
+  .levels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    list-style: none;
+    margin: 44px 0 0;
+    padding: 0;
+  }
+
+  .level {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .level-tag {
+    align-self: flex-start;
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .level-beginner .level-tag { background: var(--rose-bg); color: var(--rose-text); }
+  .level-intermediate .level-tag { background: var(--amber-bg); color: var(--amber-text); }
+  .level-advanced .level-tag { background: var(--sky-bg); color: var(--sky-text); }
+
+  .level p { margin: 0; }
+
+  .level-link {
+    margin-top: auto;
+    padding-top: 6px;
+    font-weight: 700;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact { background: var(--tint); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 36px;
+    display: grid;
+    gap: 20px;
+  }
+
+  .field { display: grid; gap: 6px; }
+
+  .field label {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 14px;
+    border: 2px solid var(--field-line);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--ink);
+    font: inherit;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+  }
+  .field textarea { min-height: 150px; resize: vertical; }
+
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible {
+    outline: 3px solid var(--blue-dark);
+    outline-offset: 2px;
+    border-color: var(--blue);
+  }
+
+  .field [aria-invalid="true"] { border-color: var(--error); }
+
+  .field-error {
+    color: var(--error);
+    font-size: 0.98rem;
+    font-weight: 600;
+    min-height: 0;
+  }
+  .field-error:empty { display: none; }
+
+  .form-note { font-size: 0.98rem; margin: 0; }
+
+  .form-status {
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+  .form-status:empty { display: none; }
+  .form-status.is-error { color: var(--error); }
+
+  /* ---------- Class hours ---------- */
+
+  .hours-time {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 9vw, 5.6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--blue);
+    margin: 0 0 14px;
+  }
+
+  .hours-detail {
+    font-size: 1.3rem;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0 0 28px;
+  }
+
+  .week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 54px));
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .week li {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--blue-soft);
+    color: var(--blue-dark);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- Pricing ---------- */
+
+  .pricing {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .pricing h2 { color: var(--white); }
+  .pricing :focus-visible { outline-color: var(--white); }
+
+  .pricing-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .pricing-line {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 12px 0 0;
+  }
+
+  /* ---------- Smaller screens ---------- */
+
+  section[id] { scroll-margin-top: 96px; }
+
+  @media (max-width: 960px) {
+    .menu-button { display: inline-flex; }
+
+    .nav {
+      display: none;
+      position: absolute;
+      left: 0; right: 0; top: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 12px var(--gutter) 22px;
+    }
+    .nav.is-open { display: flex; }
+    .nav ul { flex-direction: column; align-items: stretch; margin: 0; gap: 0; }
+    .nav ul a { display: flex; min-height: 50px; padding: 0 8px; font-size: 1.1rem; }
+
+    .hero { padding: 84px 0 96px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 72px; }
+    .photo { margin: 0 auto; width: 88%; }
+
+    .section { padding: 76px 0; }
+    .split { grid-template-columns: 1fr; gap: 24px; }
+    .levels { grid-template-columns: 1fr; margin-top: 32px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 520px) {
+    :root { --gutter: 16px; }
+    body { font-size: 1.0625rem; }
+    .topbar-inner { min-height: 68px; }
+    .brand { font-size: 1.65rem; }
+    .hero { clip-path: polygon(0 16px, 30% 0, 100% 0, 100% calc(100% - 16px), 55% 100%, 0 100%); padding: 64px 0 80px; }
+    .hero-text { font-size: 1.1rem; }
+    .hero .button { width: 100%; }
+    .photo img { border-radius: 44px; }
+    .photo-name { left: -10px; }
+    .form { padding: 22px; border-radius: 18px; }
+    .form .button { width: 100%; }
+    .week li { font-size: 0.85rem; }
+    .week { gap: 6px; }
+    .pricing .button { width: 100%; }
+  }
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">ENGine</a>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav class="nav" id="site-nav" aria-label="Page sections">
+      <ul>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#subjects">Subjects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#hours">Class hours</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <a class="button button-small" href="#contact">Book a first lesson</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="hero-brand">ENGine, private language tutoring</p>
+        <h1 id="hero-title">Learn Vietnamese with a private tutor.</h1>
+        <p class="hero-text">I'm Angela Hoang. I teach Vietnamese to learners aged 5 to 60, online and in person in Sydney. Lessons run 4–8pm, every day.</p>
+        <a class="button" href="#contact">Book a first lesson</a>
+      </div>
+
+      <div class="photo">
+        <!-- [ADD YOUR PHOTO]
+             Replace everything inside src="..." with your photo's file name, for example src="angela.jpg",
+             and keep that photo in the same folder as this file.
+             Then change the alt text to: Angela Hoang, private Vietnamese tutor
+             Then delete the line below that says [ADD YOUR PHOTO]. -->
+        <img src="data:image/jpeg;base64,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" width="720" height="503" alt="Blurred placeholder image where a photo of Angela Hoang will go.">
+        <p class="photo-name"><strong>Angela</strong><span>Vietnamese tutor</span></p>
+        <span class="todo">[ADD YOUR PHOTO]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ABOUT ME -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap split">
+      <h2 id="about-title">About me</h2>
+      <div class="prose">
+        <p>Hello, I'm Angela Hoang. I run ENGine, where I teach Vietnamese as a private tutor. I have been tutoring for 3 years.</p>
+        <p>I teach learners aged 5 to 60. Parents can book lessons for a child. Adults can book for themselves. There are three levels: beginner, intermediate and advanced. If you are new to Vietnamese, start with beginner.</p>
+        <p>You can learn with me online or in person in Sydney. Lessons run from 4 to 8pm, every day, Sydney time.</p>
+        <p class="todo">[ADD REAL CONTENT: why you teach Vietnamese, and what a first lesson with you is like.]</p>
+        <p>To start, send me a message. Tell me who the lessons are for and which level sounds right. You can ask about rates and book a first lesson.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SUBJECTS AND LEVELS -->
+  <section class="section" id="subjects" aria-labelledby="subjects-title" style="padding-top: 0;">
+    <div class="wrap">
+      <h2 id="subjects-title">Subjects and levels</h2>
+      <p class="section-intro">I teach one subject, Vietnamese, at three levels.</p>
+
+      <ul class="levels">
+        <li class="level level-beginner">
+          <span class="level-tag">Beginner</span>
+          <h3>Beginner Vietnamese</h3>
+          <p>For learners who are new to Vietnamese.</p>
+          <p class="todo">[ADD REAL CONTENT: what you teach at this level.]</p>
+          <a class="level-link" href="#contact" data-level="Beginner Vietnamese">Ask about beginner lessons</a>
+        </li>
+        <li class="level level-intermediate">
+          <span class="level-tag">Intermediate</span>
+          <h3>Intermediate Vietnamese</h3>
+          <p>For learners who know the basics.</p>
+          <p class="todo">[ADD REAL CONTENT: what you teach at this level.]</p>
+          <a class="level-link" href="#contact" data-level="Intermediate Vietnamese">Ask about intermediate lessons</a>
+        </li>
+        <li class="level level-advanced">
+          <span class="level-tag">Advanced</span>
+          <h3>Advanced Vietnamese</h3>
+          <p>For learners who are already confident in Vietnamese.</p>
+          <p class="todo">[ADD REAL CONTENT: what you teach at this level.]</p>
+          <a class="level-link" href="#contact" data-level="Advanced Vietnamese">Ask about advanced lessons</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. CONTACT ME -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 id="contact-title">Contact me</h2>
+        <p class="section-intro">Ask about rates or book a first lesson. Fill in the form and press Send message.</p>
+      </div>
+
+      <form class="form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+          <span class="field-error" id="e-name"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Your email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email">
+          <span class="field-error" id="e-email"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-subject">Subject of interest</label>
+          <select id="f-subject" name="subject" required aria-describedby="e-subject">
+            <option value="">Choose a level</option>
+            <option>Beginner Vietnamese</option>
+            <option>Intermediate Vietnamese</option>
+            <option>Advanced Vietnamese</option>
+            <option>Not sure yet</option>
+          </select>
+          <span class="field-error" id="e-subject"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" rows="5" required aria-describedby="e-message"></textarea>
+          <span class="field-error" id="e-message"></span>
+        </div>
+
+        <div>
+          <button class="button" type="submit">Send message</button>
+        </div>
+
+        <p class="form-note">Send message opens your own email app with your message ready. Press send there to finish.</p>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. CLASS HOURS -->
+  <section class="section" id="hours" aria-labelledby="hours-title">
+    <div class="wrap split">
+      <h2 id="hours-title">Class hours</h2>
+      <div>
+        <p class="hours-time">4–8pm</p>
+        <p class="hours-detail">Every day, Sydney time.</p>
+        <ul class="week" aria-hidden="true">
+          <li>Mon</li><li>Tue</li><li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li><li>Sun</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PRICING -->
+  <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap pricing-inner">
+      <div>
+        <h2 id="pricing-title">Pricing</h2>
+        <p class="pricing-line">Contact for rates.</p>
+      </div>
+      <a class="button button-light" href="#contact">Ask about rates</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     [ADD YOUR EMAIL]
+     Replace the text between the quotes with the address that
+     should receive messages, for example "you@example.com".
+     ============================================================ */
+  var TUTOR_EMAIL = "[ADD YOUR EMAIL]";
+
+  /* ----- Menu on small screens ----- */
+  var menuButton = document.querySelector(".menu-button");
+  var nav = document.getElementById("site-nav");
+
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    menuButton.setAttribute("aria-expanded", "false");
+  }
+
+  menuButton.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
+    menuButton.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  nav.addEventListener("click", function (event) {
+    if (event.target.closest("a")) { closeMenu(); }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+      closeMenu();
+      menuButton.focus();
+    }
+  });
+
+  /* ----- A level card fills in "Subject of interest" for the visitor ----- */
+  var subjectField = document.getElementById("f-subject");
+
+  document.querySelectorAll("[data-level]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      subjectField.value = link.getAttribute("data-level");
+    });
+  });
+
+  /* ----- Contact form: checks the fields, then opens the visitor's email app ----- */
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+
+  var fields = [
+    { input: document.getElementById("f-name"),    error: document.getElementById("e-name"),    message: "Enter your name." },
+    { input: document.getElementById("f-email"),   error: document.getElementById("e-email"),   message: "Enter an email address, like name@example.com." },
+    { input: subjectField,                         error: document.getElementById("e-subject"), message: "Choose a level." },
+    { input: document.getElementById("f-message"), error: document.getElementById("e-message"), message: "Write a short message." }
+  ];
+
+  function isValid(field) {
+    var value = field.input.value.trim();
+    if (!value) { return false; }
+    if (field.input.type === "email") { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+    return true;
+  }
+
+  function showState(field, ok) {
+    field.error.textContent = ok ? "" : field.message;
+    if (ok) { field.input.removeAttribute("aria-invalid"); }
+    else { field.input.setAttribute("aria-invalid", "true"); }
+  }
+
+  fields.forEach(function (field) {
+    /* Clear an error as soon as the visitor fixes the field. */
+    function recheck() {
+      if (field.input.hasAttribute("aria-invalid") && isValid(field)) { showState(field, true); }
+    }
+    field.input.addEventListener("input", recheck);
+    field.input.addEventListener("change", recheck);
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    status.textContent = "";
+    status.classList.remove("is-error");
+
+    var firstProblem = null;
+    fields.forEach(function (field) {
+      var ok = isValid(field);
+      showState(field, ok);
+      if (!ok && !firstProblem) { firstProblem = field.input; }
+    });
+
+    if (firstProblem) {
+      firstProblem.focus();
+      return;
+    }
+
+    if (TUTOR_EMAIL.indexOf("@") === -1) {
+      status.classList.add("is-error");
+      status.textContent = "This form has no email address to send to yet.";
+      return;
+    }
+
+    var name = fields[0].input.value.trim();
+    var email = fields[1].input.value.trim();
+    var subject = fields[2].input.value;
+    var message = fields[3].input.value.trim();
+
+    var body =
+      "Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Subject of interest: " + subject + "\n\n" +
+      message;
+
+    window.location.href =
+      "mailto:" + TUTOR_EMAIL +
+      "?subject=" + encodeURIComponent("Vietnamese lessons: " + subject) +
+      "&body=" + encodeURIComponent(body);
+
+    status.textContent = "Your email app is opening with your message. Press send there to finish.";
+  });
+})();
+</script>
+
+</body>
+</html>
